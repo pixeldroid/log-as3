@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flex-config>
+	
+	<!-- link-report: Output a XML-formatted report of all definitions linked into the application.-->
+	<!-- (relative to this file's location)-->
+	<link-report>../target/as3-log.links.xml</link-report>
+	
+	<!-- include-sources: a list of directories and source files to include in the output SWC-->
+	<!-- (relative to this file's location)-->
+	<include-sources>
+		<path-element>../main</path-element>
+	</include-sources>
+	
+	<!-- static-link-runtime-shared-libraries: statically link the libraries specified by the -runtime-shared-libraries-path option.-->
+	<static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
+	
+	<metadata>
+		<!-- metadata.title: The default title to store in the SWF metadata-->
+		<title>as3-log : Logging Framework for ActionScript3</title>
+		
+		<!-- metadata.date: The creation date to store in the SWF metadata-->
+		<!-- metadata.date usage:
+		<date>text</date>
+		-->
+		
+		<!-- metadata.description: The default description to store in the SWF metadata-->
+		<description>https://github.com/pixeldroid/as3-log</description>
+		
+		<!-- metadata.language: The language to store in the SWF metadata (i.e. EN, FR)-->
+		<language>EN</language>
+		
+		<!-- metadata.creator: A creator's name to store in the SWF metadata-->
+		<creator>pixeldroid</creator>
+		
+		<!-- metadata.publisher: A publisher's name to store in the SWF metadata-->
+		<publisher>pixeldroid.com</publisher>
+	</metadata>
+	
+	<!-- use-network: toggle whether the SWF is flagged for access to network resources-->
+	<use-network>true</use-network>
+
+	<!-- benchmark: output performance benchmark-->
+	<benchmark>true</benchmark>
+	
+	<!-- version: display the build version of the program-->
+	<version>true</version>
+	
+	<!-- warnings: toggle the display of warnings-->
+	<warnings>true</warnings>
+	
+	<compiler>
+		<!-- compiler.debug: generates a movie that is suitable for debugging-->
+		<debug>false</debug>
+	
+		<!-- compiler.verbose-stacktraces: save callstack information to the SWF for debugging-->
+		<verbose-stacktraces>false</verbose-stacktraces>
+		
+		<!-- compiler.optimize: Enable post-link SWF optimization-->
+		<optimize>true</optimize>
+		
+		<!-- compiler.library-path: list of SWC files or directories that contain SWC files-->
+		<!-- (relative to this file's location)
+		<library-path append="true">
+			<path-element>../swc</path-element>
+		</library-path>-->
+		
+		<!-- compiler.source-path: list of path elements that form the roots of ActionScript class hierarchies-->
+		<!-- (relative to this file's location)-->
+		<source-path>
+			<path-element>../main</path-element>
+		</source-path>
+	</compiler>
+	
+</flex-config>
+
+

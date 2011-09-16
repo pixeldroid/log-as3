@@ -1,0 +1,23 @@
+
+== pixeldroid as3-log package
+Provides a light-weight, top-level (no import) alternative to `trace()`
+
+
+=== Status
+just getting set up..
+
+
+=== Installation
+Add the swc to your mxmlc library path
+
+=== Usage
+log(this, "log message for {} from {}", "you", "as3-log");
+
+=== Testing
+...
+
+=== Related Work
+mx.logging
+SLF4J
+log4j
+backlog

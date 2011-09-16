@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flex-config>
+	
+	<!-- include-sources: a list of directories and source files to include in the output SWC-->
+	<!-- !! relative to the directory asdoc is invoked from-->
+	<doc-sources>
+		<path-element>source/main</path-element>
+	</doc-sources>
+	
+	<main-title>as3-log Logging Framework</main-title>
+	<left-frameset-width>300</left-frameset-width>
+	
+	<!-- templates-path: folder to find custom style sheets for doc generation-->
+	<!-- !! relative to the directory asdoc is invoked from
+	<templates-path>tools/asdocTemplates</templates-path>-->
+	
+	<metadata>
+		<!-- metadata.title: The default title to store in the SWF metadata-->
+		<title>as3-log Logging Framework for ActionScript3</title>
+		
+		<!-- metadata.language: The language to store in the SWF metadata (i.e. EN, FR)-->
+		<language>EN</language>
+		
+		<!-- metadata.creator: A creator's name to store in the SWF metadata-->
+		<creator>pixeldroid</creator>
+		
+		<!-- metadata.publisher: A publisher's name to store in the SWF metadata-->
+		<publisher>pixeldroid.com</publisher>
+	</metadata>
+
+	<!-- benchmark: output performance benchmark-->
+	<benchmark>true</benchmark>
+	
+	<!-- version: display the build version of the program-->
+	<version>true</version>
+	
+	<!-- warnings: toggle the display of warnings-->
+	<warnings>true</warnings>
+	
+	<compiler>
+		<!-- compiler.verbose-stacktraces: save callstack information to the SWF for debugging-->
+		<verbose-stacktraces>false</verbose-stacktraces>
+		
+		<!-- compiler.library-path: list of SWC files or directories that contain SWC files-->
+		<!-- (relative to this file's location)
+		<library-path append="true">
+			<path-element>../swc</path-element>
+		</library-path>-->
+		
+		<!-- compiler.source-path: list of path elements that form the roots of ActionScript class hierarchies-->
+		<!-- (relative to this file's location)-->
+		<source-path>
+			<path-element>../main</path-element>
+		</source-path>
+	</compiler>
+	
+</flex-config>
+

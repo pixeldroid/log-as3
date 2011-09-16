@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="as3-log" default="-usage" basedir=".">
+
+<description>
+Builds and tests the as3-log logging library for actionscript.
+</description>
+	
+	<property name="dir.root" location="${basedir}"/>
+	<import file="${dir.root}/tools/ant/init.xml"/>
+	
+	<property name="semver.major" value="0"/>
+	<property name="semver.minor" value="1"/>
+	<property name="file.buildnumber" location="${basedir}/build.number"/>
+	
+	<property name="dir.config" location="${basedir}/source/config"/>
+	<property name="dir.main" location="${basedir}/source/main"/>
+	<property name="dir.test" location="${basedir}/source/test"/>
+	<property name="dir.target" location="${basedir}/target"/>
+	<property name="dir.release" location="${basedir}/release"/>
+	
+	
+	<target name="all" description="&gt; this is the main task (clean, compile, run)" depends="clean, compile, run" />
+	
+
+	<target name="clean" description="remove the contents of ${dir.release}">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${dir.target}" includes="**/*"/>
+		</delete>
+	</target>
+	
+	
+	<target name="build-number">
+		<increment-build file="${file.buildnumber}" />
+	</target>
+	
+    <target name="version" description="sets semver.project">
+		<semver project="project" major="${semver.major}" minor="${semver.minor}" />
+		<echo message="${ant.project.name} v${semver.project}" />
+	</target>
+	
+	
+    <target name="compile" depends="clean, build-number, version, compile-libs, compile-test" 
+    	description="compiles library swcs and integration tests" />
+
+	<target name="compile-libs" depends="clean, version" description="compiles the library swcs">
+		<compc 
+			file="${dir.release}/${ant.project.name}-${semver.project}.swc" 
+			config="${dir.config}/compc-config.xml" 
+			options="-define+=VERSION::semver,'${semver.project}'"
+			/>
+	</target>
+
+	<target name="compile-test" depends="clean, version" description="compiles the integration tests">
+		
+	</target>
+
+	
+	<target name="run" description="runs the integration tests" depends="compile-test">
+		
+	</target>
+	
+</project>
+

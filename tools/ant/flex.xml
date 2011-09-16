@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ant.includes.flex" default="-usage" basedir=".">
+
+<description>
+Initialization of flex tools
+</description>
+	
+	<!-- Fail when FLEX_HOME isn't set -->
+	<fail unless="FLEX_HOME">${NL}
+Please set the FLEX_HOME property to a valid path for the Flex SDK on your machine.
+${msg.props}
+	</fail>
+	
+	<property name="flex.lib" location="${FLEX_HOME}/lib" />
+	<property name="flex.frameworks" location="${FLEX_HOME}/frameworks" />
+
+</project>
