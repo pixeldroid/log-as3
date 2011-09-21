@@ -2,15 +2,26 @@
 
 <flex-config>
 	
+	<!-- output: the filename of the SWC library to create-->
+	<!-- (relative to this file's location)
+	<output>../target/romloader-web.swf</output>-->
+	
+	<!-- default-background-color: default background color (may be overridden by the application code)-->
+	<default-background-color>0x000000</default-background-color>
+	
+	<!-- default-frame-rate: default frame rate to be used in the SWF.-->
+	<default-frame-rate>60</default-frame-rate>
+	
+	<!-- default-size: default application size (may be overridden by root attributes in the application)-->
+	<default-size>
+		<width>800</width>
+		<height>600</height>
+	</default-size>
+	
 	<!-- link-report: Output a XML-formatted report of all definitions linked into the application.-->
 	<!-- (relative to this file's location)
-	<link-report>../../target/as3-log.links.xml</link-report>-->
-	
-	<!-- include-sources: a list of directories and source files to include in the output SWC-->
-	<!-- (relative to this file's location)
-	<include-sources>
-		<path-element>../main</path-element>
-	</include-sources>-->
+	<link-report>../target/docs/desktop-links.xml</link-report>
+	-->
 	
 	<!-- static-link-runtime-shared-libraries: statically link the libraries specified by the -runtime-shared-libraries-path option.-->
 	<static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
@@ -36,6 +47,9 @@
 		<!-- metadata.publisher: A publisher's name to store in the SWF metadata-->
 		<publisher>pixeldroid.com</publisher>
 	</metadata>
+	
+	<!-- target-player: specifies the version of the player the application is targeting. Features requiring a later version will not be compiled into the application. The minimum value supported is "9.0.0".
+	<target-player>9.0.124</target-player>-->
 	
 	<!-- use-network: toggle whether the SWF is flagged for access to network resources-->
 	<use-network>true</use-network>
@@ -68,10 +82,9 @@
 		<!-- compiler.source-path: list of path elements that form the roots of ActionScript class hierarchies-->
 		<!-- (relative to this file's location)
 		<source-path>
-			<path-element>../main</path-element>
+			<path-element>../actionscript</path-element>
 		</source-path>-->
 	</compiler>
 	
 </flex-config>
-
 

@@ -10,11 +10,12 @@ Builds and tests the as3-log logging library for actionscript.
 	<import file="${dir.root}/tools/ant/init.xml"/>
 	
 	<property name="semver.major" value="0"/>
-	<property name="semver.minor" value="1"/>
+	<property name="semver.minor" value="0"/>
 	<property name="file.buildnumber" location="${basedir}/build.number"/>
 	
 	<property name="dir.config" location="${basedir}/source/config"/>
 	<property name="dir.main" location="${basedir}/source/main"/>
+	<property name="dir.toplevel" location="${basedir}/source/toplevel"/>
 	<property name="dir.test" location="${basedir}/source/test"/>
 	<property name="dir.target" location="${basedir}/target"/>
 	<property name="dir.release" location="${basedir}/release"/>
@@ -23,7 +24,7 @@ Builds and tests the as3-log logging library for actionscript.
 	<target name="all" description="&gt; this is the main task (clean, compile, run)" depends="clean, compile, run" />
 	
 
-	<target name="clean" description="remove the contents of ${dir.release}">
+	<target name="clean" description="remove the contents of ${dir.target}">
 		<delete failonerror="true" includeemptydirs="true">
 			<fileset dir="${dir.target}" includes="**/*"/>
 		</delete>
@@ -40,23 +41,63 @@ Builds and tests the as3-log logging library for actionscript.
 	</target>
 	
 	
-    <target name="compile" depends="clean, build-number, version, compile-libs, compile-test" 
+    <target name="compile" depends="clean, build-number, version, compile-libs, compile-tests" 
     	description="compiles library swcs and integration tests" />
 
-	<target name="compile-libs" depends="clean, version" description="compiles the library swcs">
+	<target name="compile-libs" depends="lib-main, lib-toplevel" description="compiles the library swcs" />
+
+	<target name="lib-main" depends="clean, version" description="compiles the logging framework core swc">
+		<local name="filename"/>       <property name="filename" value="${ant.project.name}-${semver.project}" />
+		<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.main}" />
+		<local name="source-path"/>    <property name="source-path" value="-source-path=${dir.main}" />
+		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${filename}-links.xml" />
+		<local name="define"/>         <property name="define" value="-define+=VERSION::semver,'${semver.project}'" />
 		<compc 
-			file="${dir.release}/${ant.project.name}-${semver.project}.swc" 
+			file="${dir.release}/${filename}.swc" 
 			config="${dir.config}/compc-config.xml" 
-			options="-define+=VERSION::semver,'${semver.project}'"
+			options="${include-sources} ${source-path} ${link-report} ${define}"
 			/>
 	</target>
 
-	<target name="compile-test" depends="clean, version" description="compiles the integration tests">
-		
+	<target name="lib-toplevel" depends="clean, version" description="compiles the top level functions into their own swc">
+		<local name="filename"/>       <property name="filename" value="${ant.project.name}-toplevel-${semver.project}" />
+		<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.toplevel}" />
+		<local name="source-path"/>    <property name="source-path" value="-source-path=${dir.main} -source-path=${dir.toplevel}" />
+		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${filename}-links.xml" />
+		<local name="define"/>         <property name="define" value="-define+=VERSION::semver,'${semver.project}'" />
+		<compc 
+			file="${dir.release}/${filename}.swc" 
+			config="${dir.config}/compc-config.xml" 
+			options="${include-sources} ${source-path} ${link-report} ${define}"
+			/>
+	</target>
+
+	<target name="compile-tests" depends="test-main, test-toplevel" description="compiles the integration tests" />
+
+	<target name="test-main" depends="clean" description="compiles the main integration tests">
+		<local name="filename"/>   <property name="filename" value="TestMain" />
+		<local name="source-path"/><property name="source-path" value="-source-path=${dir.main}" />
+		<local name="output"/>     <property name="output" value="-output=${dir.target}/${filename}.swf" />
+		<mxmlc 
+			file="${dir.test}/${filename}.as" 
+			config="${dir.config}/mxmlc-config.xml" 
+			options="${source-path} ${output}"
+			/>
+	</target>
+
+	<target name="test-toplevel" depends="clean" description="compiles the top level integration tests">
+		<local name="filename"/>   <property name="filename" value="TestToplevel" />
+		<local name="source-path"/><property name="source-path" value="-source-path=${dir.main} -source-path=${dir.toplevel}" />
+		<local name="output"/>     <property name="output" value="-output=${dir.target}/${filename}.swf" />
+		<mxmlc 
+			file="${dir.test}/${filename}.as" 
+			config="${dir.config}/mxmlc-config.xml" 
+			options="${source-path} ${output}"
+			/>
 	</target>
 
 	
-	<target name="run" description="runs the integration tests" depends="compile-test">
+	<target name="run" description="runs the integration tests" depends="compile-tests">
 		
 	</target>
 	

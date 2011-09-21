@@ -68,8 +68,8 @@ Reusable macros
 				fork="true"
 				failonerror="true"
 				>
-				<arg value="@{options} -load-config@{configop}@{config}"/>
-				<arg value="@{file}"/>
+				<arg line="@{file} -load-config@{configop}@{config}"/>
+				<arg line="@{options}"/>
 			</java>
 		</sequential>
 	</macrodef>
