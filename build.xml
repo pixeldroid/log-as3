@@ -44,16 +44,16 @@ Builds and tests the as3-log logging library for actionscript.
     <target name="compile" depends="clean, build-number, version, compile-libs, compile-tests" 
     	description="compiles library swcs and integration tests" />
 
-	<target name="compile-libs" depends="lib-main, lib-toplevel" description="compiles the library swcs" />
+	<target name="compile-libs" depends="lib-standard, lib-toplevel" description="compiles the library swcs" />
 
-	<target name="lib-main" depends="clean, version" description="compiles the logging framework core swc">
+	<target name="lib-standard" depends="clean, version" description="compiles the logging framework core swc">
 		<local name="filename"/>       <property name="filename" value="${ant.project.name}-${semver.project}" />
 		<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.main}" />
 		<local name="source-path"/>    <property name="source-path" value="-source-path=${dir.main}" />
 		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${filename}-links.xml" />
 		<local name="define"/>         <property name="define" value="-define+=VERSION::semver,'${semver.project}'" />
 		<compc 
-			file="${dir.release}/${filename}.swc" 
+			file="${dir.release}/standard/${filename}.swc" 
 			config="${dir.config}/compc-config.xml" 
 			options="${include-sources} ${source-path} ${link-report} ${define}"
 			/>
@@ -66,33 +66,35 @@ Builds and tests the as3-log logging library for actionscript.
 		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${filename}-links.xml" />
 		<local name="define"/>         <property name="define" value="-define+=VERSION::semver,'${semver.project}'" />
 		<compc 
-			file="${dir.release}/${filename}.swc" 
+			file="${dir.release}/toplevel/${filename}.swc" 
 			config="${dir.config}/compc-config.xml" 
 			options="${include-sources} ${source-path} ${link-report} ${define}"
 			/>
 	</target>
 
-	<target name="compile-tests" depends="test-main, test-toplevel" description="compiles the integration tests" />
+	<target name="compile-tests" depends="test-standard, test-toplevel" description="compiles the integration tests" />
 
-	<target name="test-main" depends="clean" description="compiles the main integration tests">
-		<local name="filename"/>   <property name="filename" value="TestMain" />
-		<local name="source-path"/><property name="source-path" value="-source-path=${dir.main}" />
+	<target name="test-standard" depends="clean" description="compiles the standard integration tests">
+		<local name="filename"/>   <property name="filename" value="TestStandard" />
+		<local name="source-path"/><property name="source-path" value="-source-path=${dir.test}" />
+		<local name="library-path"/><property name="library-path" value="-library-path=${dir.release}/standard/" />
 		<local name="output"/>     <property name="output" value="-output=${dir.target}/${filename}.swf" />
 		<mxmlc 
 			file="${dir.test}/${filename}.as" 
 			config="${dir.config}/mxmlc-config.xml" 
-			options="${source-path} ${output}"
+			options="${source-path} ${library-path} ${output}"
 			/>
 	</target>
 
 	<target name="test-toplevel" depends="clean" description="compiles the top level integration tests">
 		<local name="filename"/>   <property name="filename" value="TestToplevel" />
 		<local name="source-path"/><property name="source-path" value="-source-path=${dir.main} -source-path=${dir.toplevel}" />
+		<local name="library-path"/><property name="library-path" value="-library-path=${dir.release}/toplevel/" />
 		<local name="output"/>     <property name="output" value="-output=${dir.target}/${filename}.swf" />
 		<mxmlc 
 			file="${dir.test}/${filename}.as" 
 			config="${dir.config}/mxmlc-config.xml" 
-			options="${source-path} ${output}"
+			options="${source-path} ${library-path} ${output}"
 			/>
 	</target>
 
