@@ -26,7 +26,7 @@ Builds and tests the as3-log logging library for actionscript.
 
 	<target name="clean" description="remove the contents of ${dir.target}">
 		<delete failonerror="true" includeemptydirs="true">
-			<fileset dir="${dir.target}" includes="**/*"/>
+			<fileset dir="${dir.target}" includes="**/*" excludes="README.asciidoc"/>
 		</delete>
 	</target>
 	
