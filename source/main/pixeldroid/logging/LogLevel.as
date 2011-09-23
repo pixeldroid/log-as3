@@ -22,17 +22,7 @@ package pixeldroid.logging
 		static public const DEBUG:LogLevel = new LogLevel(DEBUG_INT, "DEBUG");
 		static public const ALL:LogLevel = new LogLevel(ALL_INT, "ALL");
 		
-		
-		private var rank:int;
-		private var label:String;
-		
-		public function LogLevel(rank:int, label:String)
-		{
-			this.rank = rank;
-			this.label = label;
-		}
-		
-		public function fromInt(value:int):LogLevel
+		static public function fromInt(value:int):LogLevel
 		{
 			var level:LogLevel;
 			
@@ -47,7 +37,7 @@ package pixeldroid.logging
 			return level;
 		}
 		
-		public function fromString(value:String):LogLevel
+		static public function fromString(value:String):LogLevel
 		{
 			var level:LogLevel;
 			
@@ -64,6 +54,16 @@ package pixeldroid.logging
 			}
 			
 			return level;
+		}
+		
+		
+		private var rank:int;
+		private var label:String;
+		
+		public function LogLevel(rank:int, label:String)
+		{
+			this.rank = rank;
+			this.label = label;
 		}
 		
 		public function toString():String { return label; }
