@@ -1,11 +1,12 @@
 
 package
 {
-	import pixeldroid.logging.Logger;
+	import pixeldroid.logging.LogDispatcher;
 	import pixeldroid.logging.LogLevel;
+	import pixeldroid.logging.Logger;
 	
 	public function warn(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		Logger.instance.dispatchLogMessage(LogLevel.WARN, messageOwner, message, messageArguments);
+		LogDispatcher.dispatchLogMessage(LogLevel.WARN, messageOwner, message, messageArguments, Logger.instance.config);
 	}
 }

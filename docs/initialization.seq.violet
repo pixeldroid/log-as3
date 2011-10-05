@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_23" class="java.beans.XMLDecoder"> 
+ <object class="com.horstmann.violet.SequenceDiagramGraph"> 
+  <void method="addNode"> 
+   <object id="LifelineNode0" class="com.horstmann.violet.ImplicitParameterNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Logger instance</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>552.4908396441591</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="LifelineNode1" class="com.horstmann.violet.ImplicitParameterNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>ILogConfigLoader</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>287.1381466955873</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="LifelineNode2" class="com.horstmann.violet.ImplicitParameterNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>main</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>23.0</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ActivationBarNode0" class="com.horstmann.violet.CallNode"> 
+    <void method="addChild"> 
+     <object id="ActivationBarNode1" class="com.horstmann.violet.CallNode"> 
+      <void property="implicitParameter"> 
+       <object idref="LifelineNode1"/> 
+      </void> 
+     </object> 
+    </void> 
+    <void method="addChild"> 
+     <object id="ActivationBarNode2" class="com.horstmann.violet.CallNode"> 
+      <void method="addChild"> 
+       <object id="ActivationBarNode3" class="com.horstmann.violet.CallNode"> 
+        <void method="addChild"> 
+         <object id="ActivationBarNode4" class="com.horstmann.violet.CallNode"> 
+          <void property="implicitParameter"> 
+           <object idref="LifelineNode1"/> 
+          </void> 
+          <void property="openBottom"> 
+           <boolean>true</boolean> 
+          </void> 
+         </object> 
+        </void> 
+        <void method="addChild"> 
+         <object id="ActivationBarNode5" class="com.horstmann.violet.CallNode"> 
+          <void property="implicitParameter"> 
+           <object id="LifelineNode3" class="com.horstmann.violet.ImplicitParameterNode"> 
+            <void property="name"> 
+             <void property="text"> 
+              <string>ILogConfig</string> 
+             </void> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void method="addChild"> 
+         <object id="ActivationBarNode6" class="com.horstmann.violet.CallNode"> 
+          <void method="addChild"> 
+           <object id="ActivationBarNode7" class="com.horstmann.violet.CallNode"> 
+            <void property="implicitParameter"> 
+             <object id="LifelineNode4" class="com.horstmann.violet.ImplicitParameterNode"> 
+              <void property="name"> 
+               <void property="text"> 
+                <string>ILogAppender
+(external swf)</string> 
+               </void> 
+              </void> 
+             </object> 
+            </void> 
+            <void property="openBottom"> 
+             <boolean>true</boolean> 
+            </void> 
+           </object> 
+          </void> 
+          <void method="addChild"> 
+           <object id="ActivationBarNode8" class="com.horstmann.violet.CallNode"> 
+            <void property="implicitParameter"> 
+             <object id="LifelineNode5" class="com.horstmann.violet.ImplicitParameterNode"> 
+              <void property="name"> 
+               <void property="text"> 
+                <string>LogDispatcher</string> 
+               </void> 
+              </void> 
+             </object> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="implicitParameter"> 
+           <object idref="LifelineNode0"/> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="implicitParameter"> 
+         <object idref="LifelineNode1"/> 
+        </void> 
+       </object> 
+      </void> 
+      <void property="implicitParameter"> 
+       <object idref="LifelineNode0"/> 
+      </void> 
+     </object> 
+    </void> 
+    <void method="addChild"> 
+     <object id="ActivationBarNode9" class="com.horstmann.violet.CallNode"> 
+      <void method="addChild"> 
+       <object id="ActivationBarNode10" class="com.horstmann.violet.CallNode"> 
+        <void property="implicitParameter"> 
+         <object id="LifelineNode6" class="com.horstmann.violet.ImplicitParameterNode"> 
+          <void property="name"> 
+           <void property="text"> 
+            <string>ILogEntry</string> 
+           </void> 
+          </void> 
+         </object> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="addChild"> 
+       <object id="ActivationBarNode11" class="com.horstmann.violet.CallNode"> 
+        <void method="addChild"> 
+         <object id="ActivationBarNode12" class="com.horstmann.violet.CallNode"> 
+          <void property="implicitParameter"> 
+           <object idref="LifelineNode5"/> 
+          </void> 
+         </object> 
+        </void> 
+        <void method="addChild"> 
+         <object id="ActivationBarNode13" class="com.horstmann.violet.CallNode"> 
+          <void property="implicitParameter"> 
+           <object idref="LifelineNode4"/> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="implicitParameter"> 
+         <object idref="LifelineNode5"/> 
+        </void> 
+       </object> 
+      </void> 
+      <void property="implicitParameter"> 
+       <object idref="LifelineNode0"/> 
+      </void> 
+     </object> 
+    </void> 
+    <void property="implicitParameter"> 
+     <object idref="LifelineNode2"/> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>55.0</double> 
+     <double>80.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode1"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>319.1381466955873</double> 
+     <double>104.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode2"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>584.4908396441591</double> 
+     <double>158.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode3"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>319.1381466955873</double> 
+     <double>182.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode4"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>327.1381466955873</double> 
+     <double>211.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="LifelineNode3"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>418.47493036525043</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="LifelineNode5"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>821.9701875146716</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode9"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>584.4908396441591</double> 
+     <double>571.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="LifelineNode6"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>959.8996191852499</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode10"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>991.8996191852499</double> 
+     <double>595.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode11"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>853.9701875146716</double> 
+     <double>649.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="LifelineNode4"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>689.9960374664972</double> 
+     <double>0.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode12"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>861.9701875146716</double> 
+     <double>678.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode13"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>721.9960374664972</double> 
+     <double>732.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode5"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>450.47493036525043</double> 
+     <double>295.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode6"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>592.4908396441591</double> 
+     <double>349.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode8"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>853.9701875146716</double> 
+     <double>457.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object idref="ActivationBarNode7"/> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>721.9960374664972</double> 
+     <double>373.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object class="com.horstmann.violet.NoteNode"> 
+    <void property="color"> 
+     <object id="Color0" class="java.awt.Color"> 
+      <int>220</int> 
+      <int>220</int> 
+      <int>220</int> 
+      <int>255</int> 
+     </object> 
+    </void> 
+    <void property="text"> 
+     <void property="text"> 
+      <string>client app chooses
+ILogConfigLoader impl
+for desired data type
+(json, xml, props, etc)</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>82.0243866176395</double> 
+     <double>172.53405460951757</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object class="com.horstmann.violet.NoteNode"> 
+    <void property="color"> 
+     <object idref="Color0"/> 
+    </void> 
+    <void property="text"> 
+     <void property="text"> 
+      <string>config and appender loads
+are asynchronous, so
+LogDispatcher may queue any
+log calls that are received before
+appenders are added</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>80.6101730552664</double> 
+     <double>582.6559876977151</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>construct</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode0"/> 
+   <object idref="ActivationBarNode1"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>setLogConfigLoader</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode0"/> 
+   <object idref="ActivationBarNode2"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>load(this)</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode2"/> 
+   <object idref="ActivationBarNode3"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>async load</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode3"/> 
+   <object idref="ActivationBarNode4"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ReturnEdge"> 
+    <void property="middleLabel"> 
+     <string>ILogConfigLoader</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode1"/> 
+   <object idref="ActivationBarNode0"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>log</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode0"/> 
+   <object idref="ActivationBarNode9"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>construct</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode9"/> 
+   <object idref="ActivationBarNode10"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ReturnEdge"/> 
+   <object idref="ActivationBarNode10"/> 
+   <object idref="ActivationBarNode9"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>dispatchLogEntry</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode9"/> 
+   <object idref="ActivationBarNode11"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>may queue if no appenders</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode11"/> 
+   <object idref="ActivationBarNode12"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>append</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode11"/> 
+   <object idref="ActivationBarNode13"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>construct</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode3"/> 
+   <object idref="ActivationBarNode5"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>setConfig</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode3"/> 
+   <object idref="ActivationBarNode6"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>addAppender</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode6"/> 
+   <object idref="ActivationBarNode8"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ReturnEdge"> 
+    <void property="middleLabel"> 
+     <string>ILogConfig</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode5"/> 
+   <object idref="ActivationBarNode3"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.CallEdge"> 
+    <void property="middleLabel"> 
+     <string>async load</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode6"/> 
+   <object idref="ActivationBarNode7"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ReturnEdge"> 
+    <void property="middleLabel"> 
+     <string>ILogAppender</string> 
+    </void> 
+   </object> 
+   <object idref="ActivationBarNode7"/> 
+   <object idref="ActivationBarNode6"/> 
+  </void> 
+ </object> 
+</java> 

@@ -1,11 +1,12 @@
 
 package
 {
-	import pixeldroid.logging.Logger;
+	import pixeldroid.logging.LogDispatcher;
 	import pixeldroid.logging.LogLevel;
+	import pixeldroid.logging.Logger;
 	
 	public function error(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		Logger.instance.dispatchLogMessage(LogLevel.ERROR, messageOwner, message, messageArguments);
+		LogDispatcher.dispatchLogMessage(LogLevel.ERROR, messageOwner, message, messageArguments, Logger.instance.config);
 	}
 }

@@ -1,11 +1,12 @@
 
 package
 {
-	import pixeldroid.logging.Logger;
+	import pixeldroid.logging.LogDispatcher;
 	import pixeldroid.logging.LogLevel;
+	import pixeldroid.logging.Logger;
 	
 	public function fatal(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		Logger.instance.dispatchLogMessage(LogLevel.FATAL, messageOwner, message, messageArguments);
+		LogDispatcher.dispatchLogMessage(LogLevel.FATAL, messageOwner, message, messageArguments, Logger.instance.config);
 	}
 }

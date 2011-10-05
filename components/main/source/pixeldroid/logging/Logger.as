@@ -2,23 +2,23 @@
 package pixeldroid.logging
 {
 	import flash.utils.Dictionary;
-	import flash.utils.getQualifiedClassName;
 	
 	final public class Logger implements ILoggingFacade, IConfigurableLogger
 	{
-		static public const instance:Logger = new Logger();
-		static private var sealed:Boolean = false;
+		static public const instance:Logger = new Logger(); // need instance for interface implementation
+		static private var sealed:Boolean = false; // not using lazy instantiation so need isConstructed flag
 		
 		{
-			// static code block executes after static members are set, 
-			// but before external call to constructor
+			// static code block runs the first time a property or method of a static class is called
+			// executes after static members are set, 
+			// but before any property value is returned or function executed
+			// http://kaioa.com/node/100
 			sealed = true;
 		}
 		
 		
 		private var logLevel:LogLevel = LogLevel.ALL;
-		private var nameMap:Dictionary = new Dictionary();
-		private var logEntry:ILogEntry = new LogEntry();
+		private var _config:ILogConfig;
 		
 		
 		public function Logger()
@@ -34,70 +34,51 @@ package pixeldroid.logging
 		/*
 		public function get debugWillLog():Boolean { return Logger.instance.isDebugEnabled; }
 		debugWillLog && debug(this, "calculation: {0}", expensiveCall());
+		debugEnabled && debug(...
+		debugLevel && debug(...
 		*/
 		
-		/** @private */
-		public function dispatchLogMessage(level:LogLevel, messageOwner:Object, message:String, messageArguments:Array):void
-		{
-			if (level < logLevel) return; // config.level
-			
-			var category:String = getName(messageOwner);
-			if (!LogUtils.passesFilter(category, '*')) return; // config.filter
-			
-			logEntry.setEntry(level, LogUtils.expandString(message, messageArguments), category);
-			LogDispatcher.dispatchLogEntry(logEntry);
-		}
 		
 		// IConfigurableLogger
-		public function setConfig():void
+		public function setConfig(value:ILogConfig):void
 		{
+			_config = value;
+			logLevel = _config.level;
 		}
 		
-		// public function get config():IConfig { return _config; }
+		public function get config():ILogConfig { return _config; }
 		
 		// ILoggingFacade		
 		public function fatal(messageOwner:Object, message:String, ... messageArguments):void
 		{
-			dispatchLogMessage(LogLevel.FATAL, messageOwner, message, messageArguments);
+			LogDispatcher.dispatchLogMessage(LogLevel.FATAL, messageOwner, message, messageArguments, _config);
 		}
 		
 		public function error(messageOwner:Object, message:String, ... messageArguments):void
 		{
-			dispatchLogMessage(LogLevel.ERROR, messageOwner, message, messageArguments);
+			LogDispatcher.dispatchLogMessage(LogLevel.ERROR, messageOwner, message, messageArguments, _config);
 		}
 		
 		public function warn(messageOwner:Object, message:String, ... messageArguments):void
 		{
-			dispatchLogMessage(LogLevel.WARN, messageOwner, message, messageArguments);
+			LogDispatcher.dispatchLogMessage(LogLevel.WARN, messageOwner, message, messageArguments, _config);
 		}
 		
 		public function info(messageOwner:Object, message:String, ... messageArguments):void
 		{
-			dispatchLogMessage(LogLevel.INFO, messageOwner, message, messageArguments);
+			LogDispatcher.dispatchLogMessage(LogLevel.INFO, messageOwner, message, messageArguments, _config);
 		}
 		
 		public function debug(messageOwner:Object, message:String, ... messageArguments):void
 		{
-			dispatchLogMessage(LogLevel.DEBUG, messageOwner, message, messageArguments);
+			LogDispatcher.dispatchLogMessage(LogLevel.DEBUG, messageOwner, message, messageArguments, _config);
 		}
 		
 		public function log(level:LogLevel, messageOwner:Object, message:String, ... messageArguments):void
 		{
-			dispatchLogMessage(level, messageOwner, message, messageArguments);
+			LogDispatcher.dispatchLogMessage(level, messageOwner, message, messageArguments, _config);
 		}
 		
-		
-		
-		private function getName(object:Object):String
-		{
-			if (!nameMap[object])
-			{
-				var packages:Array = getQualifiedClassName(object).split("::");
-				nameMap[object] = String(packages[packages.length-1]);
-			}
-			
-			return nameMap[object];
-		}
 	}
 }
 

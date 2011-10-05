@@ -24,7 +24,7 @@ package pixeldroid.logging
 			return msg;
 		}
 		
-		static public function passesFilter(category:String, filter:String):Boolean
+		static public function passesFilter(category:String, filters:Vector.<String>):Boolean
 		{
 			return true;
 		}
