@@ -1,6 +1,7 @@
 
 package pixeldroid.logging.appenders.browser
 {
+	import flash.display.Sprite;
 	import flash.external.ExternalInterface;
 	
 	import pixeldroid.logging.ILogAppender;
@@ -8,7 +9,7 @@ package pixeldroid.logging.appenders.browser
 	import pixeldroid.logging.LogLevel;
 	import pixeldroid.logging.LogUtils;
 	
-	public class JsConsoleAppender implements ILogAppender
+	public class JsConsoleAppender extends Sprite implements ILogAppender
 	{
 		
 		// ILogAppender

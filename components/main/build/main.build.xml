@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="as3-log.main" default="-usage" basedir="..">
+
+<description>
+Builds and releases the core as3-log swc.
+</description>
+	
+	<property name="dir.root" location="${basedir}/../.."/>
+	<import file="${dir.root}/tools/ant/init.xml"/>
+	
+	<property name="file.semver" location="${basedir}/build/main.semver"/>
+	
+	<property name="dir.config" location="${dir.root}/tools/mxmlc"/>
+	<property name="dir.source" location="${basedir}/source"/>
+	<property name="dir.target" location="${basedir}/target"/>
+	<property name="dir.release" location="${basedir}/release"/>
+	
+	
+	<target name="all" description="&gt; this is the main task (clean, compile, release)" depends="clean, compile, release" />
+	
+
+	<target name="clean" description="remove the contents of ${dir.target}">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${dir.target}" includes="${ant.project.name}*"/>
+			<fileset dir="${dir.release}" includes="${ant.project.name}*"/>
+		</delete>
+	</target>
+	
+	
+	<target name="build-number">
+		<increment-build file="${file.semver}" />
+	</target>
+	
+    <target name="version" description="sets and echoes semver property; does not alter semver value">
+		<semver project="main" file="${file.semver}" />
+		<echo message="${ant.project.name} v${semver.main}" />
+	</target>
+	
+	
+    <target name="compile" depends="clean, build-number, version" description="compiles swc into target folder">
+
+		<local name="filename"/>       <property name="filename" value="${ant.project.name}-${semver.main}"/>
+		<local name="filepath"/>       <property name="filepath" value="${dir.target}"/>
+		<local name="source-path"/>    <property name="source-path" value="-source-path=${dir.source}"/>
+		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${ant.project.name}-linkage.xml"/>
+		<local name="size-report"/>    <property name="size-report" value="-size-report=${dir.target}/${ant.project.name}-sizes.xml"/>
+    	<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.source}"/>
+		<compc 
+			file="${filepath}/${filename}.swc" 
+			config="${dir.config}/compc-config.xml" 
+			options="${source-path} ${include-sources} ${link-report} ${size-report}"
+			/>
+	</target>
+	
+	<target name="release" depends="version" description="copies release build into release folder">
+		<copy file="${dir.target}/${ant.project.name}-${semver.main}.swc" todir="${dir.release}" />
+	</target>
+				
+</project>

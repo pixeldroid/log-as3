@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="as3-log.appender.console" default="-usage" basedir="..">
+
+<description>
+Builds and releases the as3-log console appender.
+</description>
+	
+	<property name="dir.root" location="${basedir}/../.."/>
+	<import file="${dir.root}/tools/ant/init.xml"/>
+	
+	<property name="file.semver" location="${basedir}/build/console.semver"/>
+	
+	<property name="dir.config" location="${dir.root}/tools/mxmlc"/>
+	<property name="dir.source" location="${basedir}/source"/>
+	<property name="dir.libs.main" location="${dir.root}/components/main/release"/>
+	<property name="dir.target" location="${basedir}/target"/>
+	<property name="dir.release" location="${basedir}/release"/>
+	
+	
+	<target name="all" description="&gt; this is the main task (clean, compile, release)" depends="clean, compile, release" />
+	
+
+	<target name="clean" description="remove the contents of ${dir.target}">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${dir.target}" includes="${ant.project.name}*"/>
+			<fileset dir="${dir.release}" includes="${ant.project.name}*"/>
+		</delete>
+	</target>
+	
+	
+	<target name="build-number">
+		<increment-build file="${file.semver}" />
+	</target>
+	
+    <target name="version" description="sets and echoes semver property; does not alter semver value">
+		<semver project="console" file="${file.semver}" />
+		<echo message="${ant.project.name} v${semver.console}" />
+	</target>
+	
+	
+    <target name="compile" depends="clean, build-number, version" description="compiles logging appender swf into target folder">
+
+		<local name="filename"/>   <property name="filename" value="ConsoleAppender"/>
+		<local name="filepath"/>   <property name="filepath" value="${dir.source}/pixeldroid/logging/appenders/console"/>
+		<local name="source-path"/><property name="source-path" value="-source-path=${dir.source}"/>
+		<local name="library-path"/><property name="library-path" value="-library-path+=${dir.libs.main}"/>
+		<local name="link-report"/> <property name="link-report" value="-link-report=${dir.target}/${ant.project.name}-linkage.xml"/>
+		<local name="size-report"/> <property name="size-report" value="-size-report=${dir.target}/${ant.project.name}-sizes.xml"/>
+		<local name="output"/>     <property name="output" value="-output=${dir.target}/${ant.project.name}-${semver.console}.swf"/>
+		<mxmlc 
+			file="${filepath}/${filename}.as" 
+			config="${dir.config}/mxmlc-config.xml" 
+			options="${source-path} ${library-path} ${link-report} ${size-report} ${output}"
+			/>
+	</target>
+	
+	<target name="release" depends="version" description="copies release build into release folder">
+		<copy file="${dir.target}/${ant.project.name}-${semver.console}.swf" todir="${dir.release}" />
+	</target>
+				
+</project>

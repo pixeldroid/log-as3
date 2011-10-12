@@ -2,9 +2,9 @@
 
 <flex-config>
 	
-	<!-- output: the filename of the SWC library to create-->
+	<!-- output: the filename of the SWF library to create-->
 	<!-- (relative to this file's location)
-	<output>../target/romloader-web.swf</output>-->
+	<output>../target/project.swf</output>-->
 	
 	<!-- default-background-color: default background color (may be overridden by the application code)-->
 	<default-background-color>0x000000</default-background-color>
@@ -20,7 +20,7 @@
 	
 	<!-- link-report: Output a XML-formatted report of all definitions linked into the application.-->
 	<!-- (relative to this file's location)
-	<link-report>../target/docs/desktop-links.xml</link-report>
+	<link-report>../target/docs/project-links.xml</link-report>
 	-->
 	
 	<!-- static-link-runtime-shared-libraries: statically link the libraries specified by the -runtime-shared-libraries-path option.-->
@@ -28,7 +28,7 @@
 	
 	<metadata>
 		<!-- metadata.title: The default title to store in the SWF metadata-->
-		<title>as3-log : Logging Framework for ActionScript3</title>
+		<title>as3-log - Logging Framework for ActionScript3</title>
 		
 		<!-- metadata.date: The creation date to store in the SWF metadata-->
 		<!-- metadata.date usage:
@@ -49,7 +49,7 @@
 	</metadata>
 	
 	<!-- target-player: specifies the version of the player the application is targeting. Features requiring a later version will not be compiled into the application. The minimum value supported is "9.0.0".
-	<target-player>9.0.124</target-player>-->
+	<target-player>10.0.0</target-player>-->
 	
 	<!-- use-network: toggle whether the SWF is flagged for access to network resources-->
 	<use-network>true</use-network>

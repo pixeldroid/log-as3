@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="as3-log.appenders" default="-usage" basedir=".">
+
+<description>
+Builds and releases the as3-log appenders.
+</description>
+	
+	<property name="dir.root" location="${basedir}/../.."/>
+	<import file="${dir.root}/tools/ant/init.xml"/>
+	
+	
+	<target name="all" description="&gt; this is the main task (calls component sub-builds)">
+		<ant antfile="${basedir}/build/browser.build.xml" target="all"/>
+		<ant antfile="${basedir}/build/console.build.xml" target="all"/>
+		<ant antfile="${basedir}/build/trace.build.xml" target="all"/>
+	</target>
+	
+</project>
+

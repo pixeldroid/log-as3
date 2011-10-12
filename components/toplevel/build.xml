@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="as3-log.toplevel" default="-usage" basedir=".">
+
+<description>
+Builds and releases the toplevel version of the as3-log swc.
+</description>
+	
+	<property name="dir.root" location="${basedir}/../.."/>
+	<import file="${dir.root}/tools/ant/init.xml"/>
+	
+	
+	<target name="all" description="&gt; this is the main task (calls component sub-builds)">
+		<ant antfile="${basedir}/build/toplevel.build.xml" target="all"/>
+	</target>
+	
+</project>
+

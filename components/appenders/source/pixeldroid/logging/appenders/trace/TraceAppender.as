@@ -1,11 +1,13 @@
 
 package pixeldroid.logging.appenders.trace
 {
+	import flash.display.Sprite;
+	
 	import pixeldroid.logging.ILogAppender;
 	import pixeldroid.logging.ILogEntry;
 	import pixeldroid.logging.LogUtils;
 	
-	public class TraceAppender implements ILogAppender
+	public class TraceAppender extends Sprite implements ILogAppender
 	{
 		
 		// ILogAppender

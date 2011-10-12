@@ -88,7 +88,7 @@ package {
 		{
 			super();
 			
-			this.properties = (properties == null) ? new ConsoleAppenderProperties() : properties;
+			this.properties = properties || new ConsoleAppenderProperties();
 			loggingPaused = true;
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
