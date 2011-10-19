@@ -7,6 +7,6 @@ package
 	
 	public function error(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		LogDispatcher.dispatchLogMessage(LogLevel.ERROR, messageOwner, message, messageArguments, Logger.instance.config);
+		LogDispatcher.dispatchLogMessage(LogLevel.ERROR, messageOwner, message, messageArguments, Logger.configProxy.config);
 	}
 }

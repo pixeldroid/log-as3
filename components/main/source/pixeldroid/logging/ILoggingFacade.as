@@ -16,5 +16,15 @@ package pixeldroid.logging
 		function debug(messageOwner:Object, message:String, ... messageArguments):void;
 		
 		function log(level:LogLevel, messageOwner:Object, message:String, ... messageArguments):void;
+		
+		function get isDebugEnabled():Boolean;
+		
+		function get isInfoEnabled():Boolean;
+		
+		function get isWarnEnabled():Boolean;
+		
+		function get isErrorEnabled():Boolean;
+		
+		function get isFatalEnabled():Boolean;
 	}
 }

@@ -7,6 +7,6 @@ package
 	
 	public function debug(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		LogDispatcher.dispatchLogMessage(LogLevel.DEBUG, messageOwner, message, messageArguments, Logger.instance.config);
+		LogDispatcher.dispatchLogMessage(LogLevel.DEBUG, messageOwner, message, messageArguments, Logger.configProxy.config);
 	}
 }

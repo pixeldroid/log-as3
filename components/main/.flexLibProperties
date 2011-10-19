@@ -4,6 +4,8 @@
     <classEntry path="pixeldroid.logging.LogEntry"/>
     <classEntry path="pixeldroid.logging.ILogEntry"/>
     <classEntry path="pixeldroid.logging.ILogConfig"/>
+    <classEntry path="pixeldroid.logging.ILogConfigLoader"/>
+    <classEntry path="pixeldroid.logging.LogConfig"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

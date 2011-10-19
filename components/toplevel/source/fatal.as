@@ -7,6 +7,6 @@ package
 	
 	public function fatal(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		LogDispatcher.dispatchLogMessage(LogLevel.FATAL, messageOwner, message, messageArguments, Logger.instance.config);
+		LogDispatcher.dispatchLogMessage(LogLevel.FATAL, messageOwner, message, messageArguments, Logger.configProxy.config);
 	}
 }

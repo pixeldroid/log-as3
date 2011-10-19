@@ -7,6 +7,6 @@ package
 	
 	public function warn(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		LogDispatcher.dispatchLogMessage(LogLevel.WARN, messageOwner, message, messageArguments, Logger.instance.config);
+		LogDispatcher.dispatchLogMessage(LogLevel.WARN, messageOwner, message, messageArguments, Logger.configProxy.config);
 	}
 }

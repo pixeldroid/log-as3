@@ -7,6 +7,6 @@ package
 	
 	public function info(messageOwner:Object, message:String, ... messageArguments):void
 	{
-		LogDispatcher.dispatchLogMessage(LogLevel.INFO, messageOwner, message, messageArguments, Logger.instance.config);
+		LogDispatcher.dispatchLogMessage(LogLevel.INFO, messageOwner, message, messageArguments, Logger.configProxy.config);
 	}
 }
