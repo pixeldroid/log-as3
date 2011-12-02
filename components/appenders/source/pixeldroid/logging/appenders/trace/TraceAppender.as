@@ -2,16 +2,16 @@
 package pixeldroid.logging.appenders.trace
 {
 	import flash.display.Sprite;
-	
+
 	import pixeldroid.logging.ILogAppender;
 	import pixeldroid.logging.ILogEntry;
 	import pixeldroid.logging.LogUtils;
-	
+
 	public class TraceAppender extends Sprite implements ILogAppender
 	{
-		
+
 		// ILogAppender
-		
+
 		/**
 		* Append a message to flashlog.txt file.
 		*
