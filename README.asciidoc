@@ -11,7 +11,7 @@ just getting set up..
 Add the swc to your mxmlc library path
 
 === Usage
-log(this, "log message for {} from {}", "you", "as3-log");
+log(this, "log message for {0} from {1}", "you", "as3-log");
 
 === Testing
 ...
