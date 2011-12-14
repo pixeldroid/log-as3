@@ -1,23 +1,22 @@
-
 == pixeldroid as3-log package
-Provides a light-weight, top-level (no import) alternative to `trace()`
+Provides a light-weight, top-level (no import) alternative to `trace()`, with an SLF4J style API.
 
 
 === Status
-just getting set up..
+_alpha_
 
 
 === Installation
-Add the swc to your mxmlc library path
+Compile-time::
+  Add the swc(s) to your mxmlc library path
+Run-time::
+  Add the swf(s) to your application directory (`./`)
+
 
 === Usage
-log(this, "log message for {0} from {1}", "you", "as3-log");
+  log(this, "log message for {0} from {1}", "you", "as3-log");
 
-=== Testing
-...
 
 === Related Work
-mx.logging
-SLF4J
-log4j
-backlog
+* http://www.slf4j.org/[SLF4J] (http://logback.qos.ch/[Logback], http://logging.apache.org/log4j/[log4j])
+* http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/logging/package-detail.html[mx.logging]
