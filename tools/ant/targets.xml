@@ -25,10 +25,6 @@ Shared targets
 		<echo message="Ant    : ${ant.version}" />
 		
 		<echo message="Java   : Version ${java.version} " />
-		
-		<!-- <exec executable="${FLEX_HOME}/bin/mxmlc${cli}" failonerror="true" outputproperty="flex.version"><arg line="-version"/></exec> -->
-		<java jar="${flex.lib}/mxmlc.jar" dir="${flex.frameworks}" fork="true" failonerror="true" outputproperty="flex.version"><arg line="-version"/></java>
-		<echo message="Flex   : ${flex.version}" />
 	</target>
 
 </project>

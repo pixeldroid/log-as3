@@ -50,47 +50,5 @@ Reusable macros
 			</exec>
 		</sequential>
 	</macrodef>
-	
-	<macrodef name="mxmlc">
-		<attribute name="file"/>
-		<attribute name="options" default=""/>
-		<attribute name="config"/>
-		<attribute name="configop" default="+="/>
-		<sequential>
-			<echo message="- - mxmlc macro - -"/>
-			<echo message="compiling '@{file}'"/>
-			
-			<java 
-				jar="${flex.lib}/mxmlc.jar"
-				dir="${flex.frameworks}"
-				fork="true"
-				failonerror="true"
-				>
-				<arg line="@{file} -load-config@{configop}@{config}"/>
-				<arg line="@{options}"/>
-			</java>
-		</sequential>
-	</macrodef>
-	
-	<macrodef name="compc">
-		<attribute name="file"/>
-		<attribute name="options" default=""/>
-		<attribute name="config"/>
-		<attribute name="configop" default="+="/>
-		<sequential>
-			<echo message="- - compc macro - -"/>
-			<echo message="creating '@{file}'"/>
-			
-			<java 
-				jar="${flex.lib}/compc.jar"
-				dir="${flex.frameworks}"
-				fork="true"
-				failonerror="true"
-				>
-				<arg line="@{options} -load-config@{configop}@{config}"/>
-				<arg value="-output=@{file}"/>
-			</java>
-		</sequential>
-	</macrodef>
 
 </project>
