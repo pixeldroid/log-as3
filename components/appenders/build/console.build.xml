@@ -55,7 +55,7 @@ Builds and releases the as3-log console appender.
 			options="${source-path} ${library-path} ${link-report} ${size-report} ${output}"
 			/>
     	
-    	<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.source}"/>
+    	<local name="include-sources"/><property name="include-sources" value="-include-sources=${filepath}"/>
 		<compc 
 			file="${dir.target}/${ant.project.name}-${semver.console}.swc" 
 			config="${dir.config}/compc-config.xml" 
