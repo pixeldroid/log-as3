@@ -1,4 +1,4 @@
-== pixeldroid as3-log package
+== pixeldroid log-as3 package
 Provides a light-weight, top-level (no import) alternative to `trace()`, with an SLF4J style API.
 
 
