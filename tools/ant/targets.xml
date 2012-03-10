@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ant.includes.targets" default="-usage" basedir=".">
+<project name="ant.includes.targets" basedir=".">
 
 <description>
 Shared targets
 </description>
 	
-	<target name="-usage"> <!-- not providing description to avoid showing up in -projecthelp -->
-		<echo message="${ant.project.name}" />
-		<java classname="org.apache.tools.ant.Main">
-			<arg value="-projecthelp" />
-		</java>
-	</target>
-	
-	<target name="help" description="prints usage info" depends="-usage">
+	<target name="help" description="prints usage and user info">
+		<usage />
 		<echo message="user.name : ${user.name}" />
 		<echo message="user.home : ${user.home}" />
 		<echo message="${msg.props}" />

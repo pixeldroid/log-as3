@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ant.includes.macros" default="-usage" basedir=".">
+<project name="ant.includes.macros" basedir=".">
 
 <description>
 Reusable macros
 </description>
 	
+	
+	<macrodef name="usage">
+		<sequential>
+			<echo message="${ant.project.name}" />
+			<basename property="ant.filename" file="${ant.file}"/>
+			<java classname="org.apache.tools.ant.Main">
+				<arg line="-file ${ant.filename}" />
+				<arg value="-projecthelp" />
+			</java>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="dynamic-property">
 		<attribute name="name"/>
 		<attribute name="value"/>

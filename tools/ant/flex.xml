@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ant.includes.flex" default="-usage" basedir=".">
+<project name="ant.includes.flex" basedir=".">
 
 <description>
 Initialization of flex tools.
