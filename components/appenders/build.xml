@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="as3-log.appenders" default="-usage" basedir=".">
+<project name="log-as3.appenders" default="-usage" basedir=".">
+	<target name="-usage"><usage /></target>
 
 <description>
-Builds and releases the as3-log appenders.
+Builds and releases the log appenders.
 </description>
 	
 	<property name="dir.root" location="${basedir}/../.."/>

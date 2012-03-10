@@ -1,107 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="as3-log" default="-usage" basedir=".">
+<project name="log-as3" default="-usage" basedir=".">
+	<target name="-usage"><usage /></target>
 
 <description>
-Builds and tests the as3-log logging library for actionscript.
+Builds and releases the log-as3 libraries.
 </description>
 	
 	<property name="dir.root" location="${basedir}"/>
 	<import file="${dir.root}/tools/ant/init.xml"/>
 	
-	<property name="semver.major" value="0"/>
-	<property name="semver.minor" value="0"/>
-	<property name="file.buildnumber" location="${basedir}/build.number"/>
-	
-	<property name="dir.config" location="${basedir}/source/config"/>
-	<property name="dir.main" location="${basedir}/source/main"/>
-	<property name="dir.toplevel" location="${basedir}/source/toplevel"/>
-	<property name="dir.test" location="${basedir}/source/test"/>
-	<property name="dir.target" location="${basedir}/target"/>
-	<property name="dir.release" location="${basedir}/release"/>
-	
-	
-	<target name="all" description="&gt; this is the main task (clean, compile, run)" depends="clean, compile, run" />
-	
+	<property name="dir.components" location="${basedir}/components"/>
+	<property name="dir.release" location="${basedir}/releases"/>
 
-	<target name="clean" description="remove the contents of ${dir.target}">
+	
+	<target name="all" description="&gt; compiles and releases the library swcs (calls component sub-builds)" depends="libs, release"/>
+
+	<target name="clean" description="remove the contents of ${dir.release}">
 		<delete failonerror="true" includeemptydirs="true">
-			<fileset dir="${dir.target}" includes="**/*" excludes="README.asciidoc"/>
+			<fileset dir="${dir.release}" includes="**/${ant.project.name}*"/>
 		</delete>
 	</target>
-	
-	
-	<target name="build-number">
-		<increment-build file="${file.buildnumber}" />
-	</target>
-	
-    <target name="version" description="sets semver.project">
-		<semver project="project" major="${semver.major}" minor="${semver.minor}" />
-		<echo message="${ant.project.name} v${semver.project}" />
-	</target>
-	
-	
-    <target name="compile" depends="clean, build-number, version, compile-libs, compile-tests" 
-    	description="compiles library swcs and integration tests" />
 
-	<target name="compile-libs" depends="lib-standard, lib-toplevel" description="compiles the library swcs" />
-
-	<target name="lib-standard" depends="clean, version" description="compiles the logging framework core swc">
-		<local name="filename"/>       <property name="filename" value="${ant.project.name}-${semver.project}" />
-		<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.main}" />
-		<local name="source-path"/>    <property name="source-path" value="-source-path=${dir.main}" />
-		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${filename}-links.xml" />
-		<local name="define"/>         <property name="define" value="-define+=VERSION::semver,'${semver.project}'" />
-		<compc 
-			file="${dir.release}/standard/${filename}.swc" 
-			config="${dir.config}/compc-config.xml" 
-			options="${include-sources} ${source-path} ${link-report} ${define}"
-			/>
+	<target name="libs" description="builds the library swcs (calls component sub-builds)">
+		<ant antfile="${dir.components}/main/build.xml" target="all" inheritAll="false"/>
+		<ant antfile="${dir.components}/toplevel/build.xml" target="all" inheritAll="false"/>
+		<ant antfile="${dir.components}/appenders/build.xml" target="all" inheritAll="false"/>
 	</target>
 
-	<target name="lib-toplevel" depends="clean, version" description="compiles the top level functions into their own swc">
-		<local name="filename"/>       <property name="filename" value="${ant.project.name}-toplevel-${semver.project}" />
-		<local name="include-sources"/><property name="include-sources" value="-include-sources=${dir.toplevel}" />
-		<local name="source-path"/>    <property name="source-path" value="-source-path=${dir.main} -source-path=${dir.toplevel}" />
-		<local name="link-report"/>    <property name="link-report" value="-link-report=${dir.target}/${filename}-links.xml" />
-		<local name="define"/>         <property name="define" value="-define+=VERSION::semver,'${semver.project}'" />
-		<compc 
-			file="${dir.release}/toplevel/${filename}.swc" 
-			config="${dir.config}/compc-config.xml" 
-			options="${include-sources} ${source-path} ${link-report} ${define}"
-			/>
+	<target name="release" description="collects compiled libraries into main release folders">
+		<copy todir="${dir.release}/appenders">
+			<fileset dir="${dir.components}/appenders/release">
+				<include name="*.swc"/>
+				<include name="*.swf"/>
+			</fileset>
+		</copy>
+		<copy todir="${dir.release}/standard">
+			<fileset dir="${dir.components}/main/release">
+				<include name="*.swc"/>
+			</fileset>
+		</copy>
+		<copy todir="${dir.release}/toplevel">
+			<fileset dir="${dir.components}/toplevel/release">
+				<include name="*.swc"/>
+			</fileset>
+		</copy>
 	</target>
-
-	<target name="compile-tests" depends="test-standard, test-toplevel" description="compiles the integration tests" />
-
-	<target name="test-standard" depends="clean" description="compiles the standard integration tests">
-		<local name="filename"/>   <property name="filename" value="TestStandard" />
-		<local name="source-path"/><property name="source-path" value="-source-path=${dir.test}" />
-		<local name="library-path"/><property name="library-path" value="-library-path=${dir.release}/standard/" />
-		<local name="output"/>     <property name="output" value="-output=${dir.target}/${filename}.swf" />
-		<mxmlc 
-			file="${dir.test}/${filename}.as" 
-			config="${dir.config}/mxmlc-config.xml" 
-			options="${source-path} ${library-path} ${output}"
-			/>
-	</target>
-
-	<target name="test-toplevel" depends="clean" description="compiles the top level integration tests">
-		<local name="filename"/>   <property name="filename" value="TestToplevel" />
-		<local name="source-path"/><property name="source-path" value="-source-path=${dir.main} -source-path=${dir.toplevel}" />
-		<local name="library-path"/><property name="library-path" value="-library-path=${dir.release}/toplevel/" />
-		<local name="output"/>     <property name="output" value="-output=${dir.target}/${filename}.swf" />
-		<mxmlc 
-			file="${dir.test}/${filename}.as" 
-			config="${dir.config}/mxmlc-config.xml" 
-			options="${source-path} ${library-path} ${output}"
-			/>
-	</target>
-
 	
-	<target name="run" description="runs the integration tests" depends="compile-tests">
-		
+	<target name="tests" description="builds the test examples (calls component sub-builds)">
+		<ant antfile="${dir.components}/main-test/build.xml" target="all" inheritAll="false"/>
+		<ant antfile="${dir.components}/toplevel-test/build.xml" target="all" inheritAll="false"/>
 	</target>
 	
 </project>
-
