@@ -1,7 +1,8 @@
 
 package pixeldroid.logging
 {
-	
+
+
 	public interface ILogAppender
 	{
 		/**
@@ -9,6 +10,6 @@ package pixeldroid.logging
 		*
 		* @param message Message to log
 		*/
-		function append(logEntry:ILogEntry):void;
+		function append(logEntry:ILogEntry, config:ILogConfig):void;
 	}
 }

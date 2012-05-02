@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="as3-log.toplevel" default="-usage" basedir="..">
+<project name="log-as3.toplevel" default="-usage" basedir="..">
+	<target name="-usage"><usage /></target>
 
 <description>
-Builds and releases the toplevel version of the as3-log swc.
+Builds and releases the toplevel (no import) version of the log-as3 swc.
 </description>
 	
 	<property name="dir.root" location="${basedir}/../.."/>

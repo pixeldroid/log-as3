@@ -1,5 +1,5 @@
 #${semver.build} auto-incremented by Ant.
-#Tue, 11 Oct 2011 23:26:49 -0400
+#Wed, 02 May 2012 01:57:57 -0400
 semver.major=0
 semver.minor=0
-semver.build=5
+semver.build=8

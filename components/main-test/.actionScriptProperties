@@ -30,8 +30,8 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="3" linkType="1" path="/pd.as3-log.main/target/pd.as3-log.main.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/pd.as3-log.appenders/target/pd.as3-log.appenders.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/pd.log-as3.main/target/pd.log-as3.main.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/pd.log-as3.appenders/target/pd.log-as3.appenders.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

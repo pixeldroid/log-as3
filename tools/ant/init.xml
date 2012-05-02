@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ant.includes.init" default="-usage" basedir=".">
+<project name="ant.includes.init" basedir=".">
 
 <description>
 Initialization of the build properties and tools

@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ant.includes.macros" default="-usage" basedir=".">
+<project name="ant.includes.macros" basedir=".">
 
 <description>
 Reusable macros
 </description>
 	
+	
+	<macrodef name="usage">
+		<sequential>
+			<echo message="${ant.project.name}" />
+			<basename property="ant.filename" file="${ant.file}"/>
+			<java classname="org.apache.tools.ant.Main">
+				<arg line="-file ${ant.filename}" />
+				<arg value="-projecthelp" />
+			</java>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="dynamic-property">
 		<attribute name="name"/>
 		<attribute name="value"/>
@@ -48,48 +60,6 @@ Reusable macros
 			<exec osfamily="mac" spawn="true" executable="open">
 				<arg line="-n -a @{exe} @{file}"/>
 			</exec>
-		</sequential>
-	</macrodef>
-	
-	<macrodef name="mxmlc">
-		<attribute name="file"/>
-		<attribute name="options" default=""/>
-		<attribute name="config"/>
-		<attribute name="configop" default="+="/>
-		<sequential>
-			<echo message="- - mxmlc macro - -"/>
-			<echo message="compiling '@{file}'"/>
-			
-			<java 
-				jar="${flex.lib}/mxmlc.jar"
-				dir="${flex.frameworks}"
-				fork="true"
-				failonerror="true"
-				>
-				<arg line="@{file} -load-config@{configop}@{config}"/>
-				<arg line="@{options}"/>
-			</java>
-		</sequential>
-	</macrodef>
-	
-	<macrodef name="compc">
-		<attribute name="file"/>
-		<attribute name="options" default=""/>
-		<attribute name="config"/>
-		<attribute name="configop" default="+="/>
-		<sequential>
-			<echo message="- - compc macro - -"/>
-			<echo message="creating '@{file}'"/>
-			
-			<java 
-				jar="${flex.lib}/compc.jar"
-				dir="${flex.frameworks}"
-				fork="true"
-				failonerror="true"
-				>
-				<arg line="@{options} -load-config@{configop}@{config}"/>
-				<arg value="-output=@{file}"/>
-			</java>
 		</sequential>
 	</macrodef>
 
