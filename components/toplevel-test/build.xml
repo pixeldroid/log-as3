@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="log-as3.toplevel-test" default="-usage" basedir=".">
+	<target name="-usage"><usage /></target>
+
+<description>
+Builds examples to test the toplevel swc.
+</description>
+	
+	<property name="dir.root" location="${basedir}/../.."/>
+	<import file="${dir.root}/tools/ant/init.xml"/>
+	
+	<property name="dir.config" location="${dir.root}/tools/mxmlc"/>
+	<property name="dir.lib" location="${dir.root}/releases"/>
+	<property name="dir.source" location="${basedir}/source"/>
+	<property name="dir.target" location="${basedir}/target"/>
+	<property name="dir.release" location="${basedir}/html"/>
+	
+	<property name="filename" value="TestTopLevel"/>
+
+	
+	<target name="all" description="&gt; this is the main task" depends="compile, release"/>
+	
+
+	<target name="clean" description="remove the contents of ${dir.target}">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${dir.target}" includes="**/*" excludes="README.asciidoc"/>
+		</delete>
+	</target>
+	
+	<target name="compile" depends="clean" description="compiles the toplevel integration test example">
+		<local name="source-path"/> <property name="source-path" value="-source-path=${dir.source}" />
+		<local name="library-path"/><property name="library-path" value="-library-path+=${dir.lib}/standard -library-path+=${dir.lib}/toplevel -library-path+=${dir.lib}/appenders" />
+		<local name="output"/>      <property name="output" value="-output=${dir.target}/${filename}.swf" />
+		<mxmlc 
+			file="${dir.source}/${filename}.as" 
+			config="${dir.config}/mxmlc-config.xml" 
+			options="${source-path} ${library-path} ${output}"
+			/>
+	</target>
+	
+	<target name="release" description="copies release build into release folder">
+		<copy file="${dir.target}/${filename}.swf" todir="${dir.release}" />
+	</target>
+	
+</project>
+

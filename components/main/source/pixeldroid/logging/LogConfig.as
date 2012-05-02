@@ -1,33 +1,47 @@
+
 package pixeldroid.logging
 {
 	import flash.net.URLRequest;
-	
+
+
 	public class LogConfig implements ILogConfig
 	{
+
+		protected var _appenders:Vector.<URLRequest> = new <URLRequest>[];
+		protected var _filters:Vector.<String> = new <String>[];
 		protected var _level:LogLevel = LogLevel.ALL;
-		protected var _filters:Vector.<String> = new Vector.<String>();
-		protected var _appenders:Vector.<URLRequest> = new Vector.<URLRequest>();
-		
-		public function LogConfig(level:LogLevel, appenders:Vector.<URLRequest>=null, filters:Vector.<String>=null)
+		protected var _pattern:String = "%elapsed{8} [%class{}] %message{}";
+
+
+		public function LogConfig(level:LogLevel, pattern:String = null, appenders:Vector.<URLRequest> = null, filters:Vector.<String> = null)
 		{
 			_level = level;
-			if (filters) _filters = filters;
-			if (appenders) _appenders = appenders;
+			if (pattern)
+				_pattern = pattern;
+			if (filters)
+				_filters = filters;
+			if (appenders)
+				_appenders = appenders;
 		}
-		
-		public function get level():LogLevel
+
+		public function get appenders():Vector.<URLRequest>
 		{
-			return _level;
+			return _appenders;
 		}
-		
+
 		public function get filters():Vector.<String>
 		{
 			return _filters;
 		}
-		
-		public function get appenders():Vector.<URLRequest>
+
+		public function get level():LogLevel
 		{
-			return _appenders;
+			return _level;
+		}
+
+		public function get pattern():String
+		{
+			return _pattern;
 		}
 	}
 }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="as3-log.appender.browser" default="-usage" basedir="..">
+<project name="log-as3.appender.browser" default="-usage" basedir="..">
+	<target name="-usage"><usage /></target>
 
 <description>
-Builds and releases the as3-log browser appender.
+Builds and releases the browser appender.
 </description>
 	
 	<property name="dir.root" location="${basedir}/../.."/>
@@ -53,10 +54,18 @@ Builds and releases the as3-log browser appender.
 			config="${dir.config}/mxmlc-config.xml" 
 			options="${source-path} ${library-path} ${link-report} ${size-report} ${output}"
 			/>
+    	
+    	<local name="include-sources"/><property name="include-sources" value="-include-sources=${filepath}"/>
+		<compc 
+			file="${dir.target}/${ant.project.name}-${semver.browser}.swc" 
+			config="${dir.config}/compc-config.xml" 
+			options="${source-path} ${library-path} ${include-sources} ${link-report} ${size-report}"
+			/>
 	</target>
 	
 	<target name="release" depends="version" description="copies release build into release folder">
 		<copy file="${dir.target}/${ant.project.name}-${semver.browser}.swf" todir="${dir.release}" />
+		<copy file="${dir.target}/${ant.project.name}-${semver.browser}.swc" todir="${dir.release}" />
 	</target>
 				
 </project>

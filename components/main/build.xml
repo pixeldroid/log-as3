@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="as3-log.main" default="-usage" basedir=".">
+<project name="log-as3.main" default="-usage" basedir=".">
+	<target name="-usage"><usage /></target>
 
 <description>
-Builds and releases the core as3-log swc.
+Builds and releases the core swc.
 </description>
 	
 	<property name="dir.root" location="${basedir}/../.."/>

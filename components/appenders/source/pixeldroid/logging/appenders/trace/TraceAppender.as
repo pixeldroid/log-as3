@@ -4,13 +4,13 @@ package pixeldroid.logging.appenders.trace
 	import flash.display.Sprite;
 
 	import pixeldroid.logging.ILogAppender;
+	import pixeldroid.logging.ILogConfig;
 	import pixeldroid.logging.ILogEntry;
 	import pixeldroid.logging.LogUtils;
 
+
 	public class TraceAppender extends Sprite implements ILogAppender
 	{
-
-		// ILogAppender
 
 		/**
 		* Append a message to flashlog.txt file.
@@ -19,10 +19,9 @@ package pixeldroid.logging.appenders.trace
 		*
 		* @param logEntry Entry to log
 		*/
-		public function append(logEntry:ILogEntry):void
+		public function append(logEntry:ILogEntry, config:ILogConfig):void
 		{
-			var msg:String = LogUtils.formatString("", logEntry);
-			//throw new Error(logEntry.message);
+			const msg:String = LogUtils.formatString(config.pattern, logEntry);
 			trace(msg);
 		}
 	}
